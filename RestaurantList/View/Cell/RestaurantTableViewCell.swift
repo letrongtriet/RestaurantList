@@ -11,7 +11,7 @@ import Combine
 class RestaurantTableViewCell: UITableViewCell {
 
     // MARK: - Observable
-    var favoriteButtonCallback = PassthroughSubject<Bool, Never>()
+    var favoriteButtonCallback = PassthroughSubject<RestaurantItem, Never>()
 
     // MARK: - Dependencies
     var item: RestaurantItem?
@@ -135,7 +135,7 @@ class RestaurantTableViewCell: UITableViewCell {
         guard let item = item else { return }
         var isFavorite = item.isFavorite
         isFavorite.toggle()
-        favoriteButtonCallback.send(isFavorite)
+        favoriteButtonCallback.send(RestaurantItem(restaurant: item.restaurant, isFavorite: isFavorite))
     }
 
 }

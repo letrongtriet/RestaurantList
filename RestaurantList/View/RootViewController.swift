@@ -124,8 +124,8 @@ class RootViewController: UIViewController {
         }
     }
 
-    private func handleFavoriteButtonCallback(_ isFavorite: Bool, item: RestaurantItem) {
-        if isFavorite {
+    private func handleFavoriteButtonCallback(item: RestaurantItem) {
+        if item.isFavorite {
             viewModel.add(id: item.restaurant.id.oid)
         } else {
             viewModel.remove(id: item.restaurant.id.oid)
@@ -150,8 +150,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.item = item
         cell.favoriteButtonCallback
-            .sink(receiveValue: { [weak self] isFavorite in
-                self?.handleFavoriteButtonCallback(isFavorite, item: item)
+            .sink(receiveValue: { [weak self] item in
+                self?.handleFavoriteButtonCallback(item: item)
             })
             .store(in: &bag)
 
