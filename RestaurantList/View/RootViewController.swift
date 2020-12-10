@@ -146,9 +146,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantTableViewCell", for: indexPath) as! RestaurantTableViewCell
-        let item = restaurants[indexPath.row]
 
-        cell.item = item
+        cell.item = restaurants[indexPath.row]
         cell.favoriteButtonCallback
             .sink(receiveValue: { [weak self] item in
                 self?.handleFavoriteButtonCallback(item: item)
